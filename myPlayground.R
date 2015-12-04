@@ -307,3 +307,10 @@ load("updated.RData")
 AgencyLevel <- complete[!duplicated(complete$AGENCY_ID),]
 
 save(AgencyLevel, file = "AgencyLevel.RData")
+load("AgencyLevel.RData")
+
+AgencyLevel <- AgencyLevel[!is.na(AgencyLevel$AGENCY_NAME),]
+
+AgencyLevel <- subset(AgencyLevel, substr(AGENCY_NAME, nchar(AGENCY_NAME)-14, nchar(AGENCY_NAME)) != " Juvenile Court")
+
+save(AgencyLevel, file = "AgencyLevel.RData")
